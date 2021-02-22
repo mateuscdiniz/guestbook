@@ -4,6 +4,7 @@ type: php:7.4
 
 runtime:
     extensions:
+        - pdo_pgsql
         - apcu
         - mbstring
         - sodium
@@ -16,10 +17,14 @@ runtime:
 #        # uncomment on PHP 7.4+
 #        #opcache.preload: /app/config/preload.php
 
+
 build:
     flavor: none
 
 disk: 512
+
+relationships:
+    database: "db:postgresql"
 
 web:
     locations:
@@ -45,3 +50,5 @@ hooks:
         set -x -e
 
         (>&2 symfony-deploy)
+    
+
